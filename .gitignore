@@ -1,2 +1,4 @@
 .env
 venv/
+VectorStoreDB/chroma_db/
+VectorStoreDB/faiss_index/
