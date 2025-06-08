@@ -4,6 +4,7 @@ from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 import streamlit as st
+import time
 
 load_dotenv()
 
@@ -29,7 +30,14 @@ llm = OllamaLLM(model="llama3.2")
 output_parser = StrOutputParser()
 chain = prompt | llm | output_parser
 
-if input_text:
-    st.write(chain.invoke({
+response = chain.invoke({
         "question": input_text
-    }))
+    })
+
+def stream_data():
+    for word in response.split(" "):
+        yield word + " "
+        time.sleep(0.05)
+
+if input_text:
+    st.write_stream(stream_data)

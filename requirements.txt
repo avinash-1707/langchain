@@ -16,3 +16,8 @@ langchain_huggingface
 faiss-cpu
 langchain_chroma
 streamlit
+langchain-google-genai
+langchain_groq
+fastapi
+langserve
+sse_starlette
